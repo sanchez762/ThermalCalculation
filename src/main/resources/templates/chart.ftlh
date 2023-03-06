@@ -6,7 +6,7 @@
 
             var dps = [[], [], [], []];
             var chart = new CanvasJS.Chart("chartContainer", {
-                theme: "light2", // "light1", "dark1", "dark2"
+                theme: "light2",
                 title: {
                     text: "График нагрузки"
                 },

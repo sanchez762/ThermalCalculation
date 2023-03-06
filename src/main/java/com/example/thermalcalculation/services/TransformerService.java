@@ -3,7 +3,6 @@ package com.example.thermalcalculation.services;
 import com.example.thermalcalculation.repositories.TransformerRepository;
 import com.example.thermalcalculation.transformer.Transformer;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +27,4 @@ public class TransformerService {
     public Transformer getTrByID(Long id){
         return transformerRepository.findById(id).orElse(null);
     }
-    /*public int calculate(Long id){
-        Transformer trans = transformerRepository.findById(id).get();
-        return trans.getPk() / trans.getPxx();
-    }*/
 }

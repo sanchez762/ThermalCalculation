@@ -1,5 +1,6 @@
 package com.example.thermalcalculation.controllers;
 
+import com.example.thermalcalculation.services.CalculationService;
 import com.example.thermalcalculation.transformer.Calculation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,20 +14,20 @@ import java.util.Arrays;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/loadChart")
+@RequestMapping("/load")
 public class ControllerLoad {
+    private final CalculationService calculationService;
 
-    private final Calculation calculation;
     @GetMapping
     public String loadChart(){
-        return "loadChart";
+        return "load";
     }
 
     @PostMapping("/setLoad")
     public String setLoad(@RequestParam(value="power") String[] power){
-        calculation.power = Arrays.stream(power)
+        calculationService.setLoad(Arrays.stream(power)
                 .mapToDouble(Double::parseDouble)
-                .toArray();
+                .toArray());
         return "redirect:/";
     }
 }

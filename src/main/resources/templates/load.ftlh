@@ -6,7 +6,7 @@
 <body>
 <h1>Формирование графика нагрузки</h1><hr>
 <div>
-    <form action="/loadChart/setLoad" method="post">
+    <form action="/load/setLoad" method="post">
         <table>
             <tbody>
             <tr>

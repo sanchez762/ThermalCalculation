@@ -1,7 +1,7 @@
 package com.example.thermalcalculation.controllers;
 
+import com.example.thermalcalculation.services.CalculationService;
 import com.example.thermalcalculation.services.TransformerService;
-import com.example.thermalcalculation.transformer.Calculation;
 import com.example.thermalcalculation.transformer.Transformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor
 public class ControllerMenu {
+    private final CalculationService calculationService;
     private final TransformerService transformerService;
-    private final Calculation calculation;
 
     @GetMapping("/")
     public String menu(Model model){
-        model.addAttribute("tr", calculation.trans);
-        model.addAttribute("power", calculation.power);
-        model.addAttribute("condition", calculation.condition);
+        model.addAttribute("tr", calculationService.getTr());
+        model.addAttribute("power", calculationService.getPower());
+        model.addAttribute("condition", calculationService.getCondition());
         return "menu";
     }
 
@@ -49,24 +49,19 @@ public class ControllerMenu {
                              @RequestParam(value="iter") double iter,
                              @RequestParam(value="tmMax") double tmMax,
                              @RequestParam(value="tnntMax") double tnntMax){
-        calculation.n = n;
-        calculation.temperature = temperature;
-        calculation.smax = smax;
-        calculation.iter = iter;
-        calculation.tmMax = tmMax;
-        calculation.tnntMax = tnntMax;
+        calculationService.setParam(temperature, n, smax, iter, tmMax, tnntMax);
         return "redirect:/";
     }
 
     @GetMapping("/chart")
     public String chart(Model model){
-        model.addAttribute("dataPointsList", calculation.list);
+        model.addAttribute("dataPointsList", calculationService.result());
         return "chart";
     }
 
     @GetMapping("/calculate")
     public String calculate(){
-        calculation.calculation();
+        calculationService.calculation();
         return "redirect:/";
     }
 
@@ -84,7 +79,7 @@ public class ControllerMenu {
 
     @PostMapping("/setTrans/{id}")
     public String setTr(@PathVariable Long id){
-        calculation.trans = transformerService.getTrByID(id);
+        calculationService.setTrans(transformerService.getTrByID(id));
         return "redirect:/";
     }
 }

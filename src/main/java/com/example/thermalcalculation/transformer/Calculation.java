@@ -84,7 +84,7 @@ public class Calculation {
         chart(tmMax);
         chart(tnntMax);
 
-        boolean cond[] = new boolean[2];
+        boolean[] cond = new boolean[2];
         boolean tmCondition = true;
         boolean tnntCondition = true;
 
@@ -142,6 +142,4 @@ public class Calculation {
         }
         list.add(dataPointsMax);
     }
-
-
 }

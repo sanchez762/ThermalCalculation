@@ -15,7 +15,7 @@
     Трансформатор не выбран
 </#if>
 <hr>
-<form action="/loadChart" method="get">
+<form action="/load" method="get">
     <button type="submit">Установить график нагрузки</button>
 </form><br>
 <#if power??>График нагрузки определен</#if>
