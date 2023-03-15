@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class TransformerService {
     private final TransformerRepository transformerRepository;
@@ -19,7 +18,6 @@ public class TransformerService {
         return transformerRepository.findAll();}
 
     public void saveTrans(Transformer transformer){
-        log.info("Saving new{}", transformer);
         transformerRepository.save(transformer);
     }
 
@@ -30,4 +28,8 @@ public class TransformerService {
     public Transformer getTrByID(Long id){
         return transformerRepository.findById(id).orElse(null);
     }
+    /*public int calculate(Long id){
+        Transformer trans = transformerRepository.findById(id).get();
+        return trans.getPk() / trans.getPxx();
+    }*/
 }
