@@ -9,7 +9,7 @@ public class Calculation {
     public Transformer trans;
     public double[] power;
     public int n;
-    public double t;
+    public double temperature;
     public double smax;
     public double iter;
     public double tmMax;
@@ -28,6 +28,8 @@ public class Calculation {
 
     public void calculation(){
 
+        list.clear();
+
         double d = (double) trans.getPk()/trans.getPxx();
         double tm0 = 0;
         double vnntustL = 0;
@@ -36,16 +38,23 @@ public class Calculation {
         for(int i = 0; i <24; i++){
             sCalc[i] = smax * (power[i] / 100);
         }
+
+        double s = trans.getPower();
+        double vm = trans.getVm();
+        double x = trans.getX();
+        double y = trans.getX();
+        double tau = trans.getTau();
+
         vmt[0] = 0;
         delta[0] = 0;
         for(int i = 1; i <= iter; i++){
             for(int j = 0; j < 24; j++){
-                k[j] = sCalc[j] / (trans.getPower() * n);
+                k[j] = sCalc[j] / (s * n);
                 k2[j] = Math.pow(k[j], 2);
-                vmust[j] = trans.getVm() * Math.pow((1+d*k2[j]) / (1+d), trans.getX());
-                vnntust[j] = trans.getVnnt() * Math.pow(k[j], trans.getY());
-                vmt[j+1] = vmust[j] + (vmt[j] - vmust[j]) * Math.exp(-1/(double)trans.getTau());
-                tm[j] = vmt[j+1] + t;
+                vmust[j] = vm * Math.pow((1+d*k2[j]) / (1+d), x);
+                vnntust[j] = trans.getVnnt() * Math.pow(k[j], y);
+                vmt[j+1] = vmust[j] + (vmt[j] - vmust[j]) * Math.exp(-1/tau);
+                tm[j] = vmt[j+1] + temperature;
                 tnnt[j] = tm[j] + vnntust[j];
                 if(j == 0){
                     delta[j] = vnntust[j] - vnntustL;
@@ -74,6 +83,7 @@ public class Calculation {
 
         chart(tmMax);
         chart(tnntMax);
+        System.out.println(list);
     }
 
     private void chart(double[] listChart) {

@@ -6,7 +6,7 @@
 <body>
 <h2>Подробные данные</h2>
 <form action="/parameters/apply" method="post">
-    Температура: <input type="number" step="any" value="-15" name="t"/><br><br>
+    Температура: <input type="number" step="any" value="-15" name="temperature"/><br><br>
     Кол-во тр: <input type="number" value="1" name="n"/><br><br>
     Smax: <input type="number" step="any" value="33.33" name="smax"/><br><br>
     Число итераций расчета: <input type="number" value="2" name="iter"/><br><br>

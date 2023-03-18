@@ -10,24 +10,48 @@
                 title: {
                     text: "График нагрузки"
                 },
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "right"
+                },
                 axisX: {
                     viewportMinimum: 0,
                     viewportMaximum: 24,
+                    title: "Час нагрузки"
                 },
-                axisY1: {
+                axisY: {
                     title: "Температура, °C",
+                    includeZero: true
                 },
                 data: [{
                         type: "line",
+                        lineColor:"red",
+                        markerColor: "red",
+                        showInLegend: true,
+                        legendText: "температура масла",
                         dataPoints: dps[0]},
                     {
                         type: "line",
+                        lineColor:"blue",
+                        markerColor: "blue",
+                        showInLegend: true,
+                        legendText: "температура ннт",
                         dataPoints: dps[1]},
                     {
                         type: "line",
+                        lineColor:"red",
+                        markerColor: "red",
+                        markerType: "cross",
+                        showInLegend: true,
+                        legendText: "макс температура масла",
                         dataPoints: dps[2]},
                     {
                         type: "line",
+                        lineColor:"blue",
+                        markerColor: "blue",
+                        markerType: "cross",
+                        showInLegend: true,
+                        legendText: "макс температура ннт",
                         dataPoints: dps[3]}
                 ]
             });

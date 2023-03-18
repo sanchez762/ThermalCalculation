@@ -17,13 +17,15 @@
 <hr>
 <form action="/loadChart" method="get">
     <button type="submit">Установить график нагрузки</button>
-</form>
+</form><br>
 <#if power??>График нагрузки определен</#if>
+<hr>
 <form action="/parameters" method="get">
     <button type="submit">Перейти к параметрам расчета</button>
-</form>
+</form><br>
+<hr>
 <form action="/chart" method="get">
     <button type="submit">График</button>
-</form>
+</form><br>
 </body>
 </html>

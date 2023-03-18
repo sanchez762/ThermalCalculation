@@ -46,15 +46,14 @@ public class ControllerMenu {
         return "parameters";
     }
     @PostMapping("/parameters/apply")
-    public String applyParam(@RequestParam(value="t") double t,
+    public String applyParam(@RequestParam(value="temperature") double temperature,
                              @RequestParam(value="n") int n,
                              @RequestParam(value="smax") double smax,
                              @RequestParam(value="iter") double iter,
                              @RequestParam(value="tmMax") double tmMax,
-                             @RequestParam(value="tnntMax") double tnntMax,
-                             Model model){
+                             @RequestParam(value="tnntMax") double tnntMax){
         calculation.n = n;
-        calculation.t = t;
+        calculation.temperature = temperature;
         calculation.smax = smax;
         calculation.iter = iter;
         calculation.tmMax = tmMax;
