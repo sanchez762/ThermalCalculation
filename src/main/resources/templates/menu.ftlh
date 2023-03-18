@@ -22,7 +22,19 @@
 <hr>
 <form action="/parameters" method="get">
     <button type="submit">Перейти к параметрам расчета</button>
-</form><br>
+</form>
+<hr>
+<form action="/calculate" method="get">
+    <button type="submit">Выполнить расчет</button>
+</form>
+<#if condition??>
+    <#if condition[0]> Темературы масла не превышают максимальных значений
+    <#else>Темературы масла превышают максимальные значения
+    </#if><br>
+    <#if condition[1]> Темературы ннт не превышают максимальных значений
+    <#else>Темературы ннт превышают максимальные значения
+    </#if>
+</#if>
 <hr>
 <form action="/chart" method="get">
     <button type="submit">График</button>

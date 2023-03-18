@@ -14,8 +14,8 @@ public class Calculation {
     public double iter;
     public double tmMax;
     public double tnntMax;
-
     public List<List<Map<Object,Object>>> list = new ArrayList<>();
+    public boolean[] condition;
     private final double[] sCalc = new double[24];
     private final double[] k = new double[24];
     private final double[] k2 = new double[24];
@@ -70,7 +70,7 @@ public class Calculation {
         double[] tmChart = new double[25];
         tmChart[0] = tm0;
         System.arraycopy(tm, 0, tmChart, 1, tmChart.length - 1);
-        chart(tmChart);
+        chartM(tmChart);
 
         double[] tnntChart = new double[48];
         tnntChart[0] = tnntL + delta[0];
@@ -83,10 +83,30 @@ public class Calculation {
 
         chart(tmMax);
         chart(tnntMax);
-        System.out.println(list);
+
+        boolean cond[] = new boolean[2];
+        boolean tmCondition = true;
+        boolean tnntCondition = true;
+
+        for (double t : tm) {
+            if (t > tmMax) {
+                tmCondition = false;
+                break;
+            }
+        }
+        cond[0] = tmCondition;
+
+        for (double t : tnnt) {
+            if (t > tnntMax) {
+                tnntCondition = false;
+                break;
+            }
+        }
+        cond[1] = tnntCondition;
+        condition = cond;
     }
 
-    private void chart(double[] listChart) {
+    private void chartM(double[] listChart) {
         Map<Object,Object> map;
         List<Map<Object,Object>> dataPoints = new ArrayList<>();
 
