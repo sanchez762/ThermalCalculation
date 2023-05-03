@@ -1,8 +1,8 @@
-package com.example.thermalcalculation.controllers;
+package thermal_calculation.controllers;
 
-import com.example.thermalcalculation.services.CalculationService;
-import com.example.thermalcalculation.services.TransformerService;
-import com.example.thermalcalculation.transformer.Transformer;
+import thermal_calculation.services.CalculationService;
+import thermal_calculation.services.TransformerService;
+import thermal_calculation.models.Transformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class ControllerMenu {
 
     @GetMapping("/choiceTrans")
     public String choiceTrans(Model model){
-        model.addAttribute("list", transformerService.list(null));
+        model.addAttribute("list", transformerService.list());
         return "choiceTrans";
     }
 

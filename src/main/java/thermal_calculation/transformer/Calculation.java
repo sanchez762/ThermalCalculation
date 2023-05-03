@@ -1,5 +1,7 @@
-package com.example.thermalcalculation.transformer;
+package thermal_calculation.transformer;
 
+import thermal_calculation.models.CoolingSystem;
+import thermal_calculation.models.Transformer;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -7,6 +9,7 @@ import java.util.*;
 @Component
 public class Calculation {
     public Transformer trans;
+    public CoolingSystem coolingSystem;
     public double[] power;
     public int n;
     public double temperature;
@@ -40,10 +43,11 @@ public class Calculation {
         }
 
         double s = trans.getPower();
-        double vm = trans.getVm();
-        double x = trans.getX();
-        double y = trans.getX();
-        double tau = trans.getTau();
+        double vm = coolingSystem.getVm();
+        double x = coolingSystem.getX();
+        double y = coolingSystem.getY();
+        double tau = coolingSystem.getTau();
+        double vnnt = coolingSystem.getVnnt();
 
         vmt[0] = 0;
         delta[0] = 0;
@@ -52,7 +56,7 @@ public class Calculation {
                 k[j] = sCalc[j] / (s * n);
                 k2[j] = Math.pow(k[j], 2);
                 vmust[j] = vm * Math.pow((1+d*k2[j]) / (1+d), x);
-                vnntust[j] = trans.getVnnt() * Math.pow(k[j], y);
+                vnntust[j] = vnnt * Math.pow(k[j], y);
                 vmt[j+1] = vmust[j] + (vmt[j] - vmust[j]) * Math.exp(-1/tau);
                 tm[j] = vmt[j+1] + temperature;
                 tnnt[j] = tm[j] + vnntust[j];

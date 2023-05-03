@@ -1,4 +1,4 @@
-package com.example.thermalcalculation.transformer;
+package thermal_calculation.models;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,14 +22,7 @@ public class Transformer {
     private int pk;
     @Column(name = "pxx")
     private int pxx;
-    @Column(name = "x")
-    private double x;
-    @Column(name = "y")
-    private double y;
-    @Column(name = "tau")
-    private int tau;
-    @Column(name = "vm")
-    private int vm;
-    @Column(name = "vnnt")
-    private int vnnt;
+    @ManyToOne
+    @JoinColumn(name = "cooling_systems_id")
+    private CoolingSystem coolingSystem;
 }

@@ -1,7 +1,7 @@
-package com.example.thermalcalculation.services;
+package thermal_calculation.services;
 
-import com.example.thermalcalculation.repositories.TransformerRepository;
-import com.example.thermalcalculation.transformer.Transformer;
+import thermal_calculation.repositories.TransformerRepository;
+import thermal_calculation.models.Transformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +12,7 @@ import java.util.List;
 public class TransformerService {
     private final TransformerRepository transformerRepository;
 
-    public List<Transformer> list(String name){
-        if (name != null) return transformerRepository.findByName(name);
+    public List<Transformer> list(){
         return transformerRepository.findAll();}
 
     public void saveTrans(Transformer transformer){

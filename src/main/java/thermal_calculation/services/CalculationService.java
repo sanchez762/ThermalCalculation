@@ -1,7 +1,7 @@
-package com.example.thermalcalculation.services;
+package thermal_calculation.services;
 
-import com.example.thermalcalculation.transformer.Calculation;
-import com.example.thermalcalculation.transformer.Transformer;
+import thermal_calculation.transformer.Calculation;
+import thermal_calculation.models.Transformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +19,7 @@ public class CalculationService {
 
     public void setTrans(Transformer tr){
         calculation.trans = tr;
+        calculation.coolingSystem = tr.getCoolingSystem();
     }
     public void calculation(){
         calculation.calculation();

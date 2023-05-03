@@ -1,7 +1,6 @@
-package com.example.thermalcalculation.controllers;
+package thermal_calculation.controllers;
 
-import com.example.thermalcalculation.services.CalculationService;
-import com.example.thermalcalculation.transformer.Calculation;
+import thermal_calculation.services.CalculationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
